@@ -1,0 +1,69 @@
+<div class="row">
+
+  <div class="col-3">
+    <div class="filter sticky-top">
+      <form [formGroup]="filter">
+
+        <h4 class="h4"> Filters </h4>
+        <div class="filter-item">
+          <div class="form-group">
+            <label for="localities">Locality</label>
+            <select multiple class="form-control" id="localities" formControlName="localities">
+              <option *ngFor="let locality of localities" >{{ locality }}</option>
+            </select>
+            <span class="helper-text">Multiselect: Ctrl/Cmd + <em class="fa fa-mouse-pointer" style="font-size: 0.75rem"></em></span>
+          </div>
+        </div>
+        <div class="filter-item">
+          <div class="form-group">
+            <label for="price_range">Price range</label>
+            <select class="form-control" id="price_range" formControlName="range">
+              <option value="0" >Any</option>
+              <option value="1" >&lt;= 100000</option>
+              <option value="2" >100001 - 1000000</option>
+              <option value="3" >&gt;= 1000001</option>
+            </select>
+          </div>
+        </div>
+        <div class="filter-item">
+          <div class="form-group" >
+            <label for="added_date">Added date</label>
+            <select class="form-control" id="added_date" formControlName="added" aria-disabled="true">
+              <option value="0" disabled>Any</option>
+              <option value="1" disabled>This week</option>
+              <option value="2" disabled>Last 5 week</option>
+              <option value="3" disabled>Last 15 week</option>
+            </select>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="col-9">
+    <div *ngFor="let property of properties" class="row property-row" >
+      <div class="col-6">
+        <img *ngIf="!!property.images?.length" [src]="property.images" alt="{{ property.name | slugify }}" style="width: 100%;">
+      </div>
+      <div class="col-6">
+        <table class="table">
+          <thead hide="true">
+            <th id="th-1">Property Name</th>
+            <th id="th-1">{{ property.name }}</th>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Description</td>
+              <td>{{ property.description }}</td>
+            </tr>
+            <tr>
+              <td>Locality</td>
+              <td>{{ property.locality }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+</div>

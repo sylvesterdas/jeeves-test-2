@@ -1,0 +1,40 @@
+
+<div class="container">
+  <form class="form my-4" [formGroup]="propertyForm" (submit)="submit()">
+    <h3 class="text-center">Add a property</h3>
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input class="form-control" id="name" formControlName="name" aria-autocomplete="none">
+    </div>
+    <div class="form-group">
+      <label for="description">Description</label>
+      <input class="form-control" id="description" formControlName="description" aria-autocomplete="none">
+    </div>
+    <div formArrayName="images">
+      <span class="h2">Images</span>&nbsp;&nbsp;
+      <button (click)="addImage()" type="button" class="btn btn-primary my-4">+ Add another image</button>
+      <div *ngFor="let image of images?.controls; let i=index" class="form-group">
+        <label for="images[{{ i }}]">Image URL</label>&nbsp;&nbsp;<span (click)="onRemove(i)"><em class="fa fa-trash"></em></span>
+        <input type="url" class="form-control" id="images[{{ i }}]" [formControlName]="i" aria-autocomplete="none">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="address">Address</label>
+      <input class="form-control" id="address" formControlName="address" aria-autocomplete="none">
+    </div>
+    <div class="form-group">
+      <label for="locality">Locality</label>
+      <input class="form-control" id="locality" formControlName="locality" aria-autocomplete="none">
+    </div>
+    <div class="form-group">
+      <label for="price">Price</label>
+      <input type="number" class="form-control" id="price" formControlName="price" aria-autocomplete="none">
+    </div>
+    <div class="form-group">
+      <label for="area">Area</label>
+      <input type="number" class="form-control" id="area" formControlName="area" aria-autocomplete="none">
+    </div>
+    <input type="reset" class="btn btn-secondary" id="reset">&nbsp;&nbsp;
+    <input type="submit" class="btn btn-primary" id="submit">
+  </form>
+</div>
